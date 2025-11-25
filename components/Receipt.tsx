@@ -111,7 +111,7 @@ export default function Receipt({ code }: { code: string }) {
 					/>
 					<Text
 						fontSize='lg'
-						color='gray.600'>
+						color='#222'>
 						রসিদ লোড হচ্ছে...
 					</Text>
 				</VStack>
@@ -212,60 +212,110 @@ export default function Receipt({ code }: { code: string }) {
 					<Text color='gray.500'>তারিখ: {new Date().toLocaleDateString()}</Text>
 				</VStack>
 				<Separator mb={6} /> {/* Details */}
-				<Table.Root variant='outline' border='1px solid' borderColor='gray.300'>
+				<Table.Root
+					variant='outline'
+					border='1px solid'
+					borderColor='gray.300'>
 					<Table.Body>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>নাম</Table.Cell>
-							<Table.Cell>{data?.name}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								নাম
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.name}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>ক্যাডার</Table.Cell>
-							<Table.Cell>{data?.cadre}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								ক্যাডার
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.cadre}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>মোবাইল নং</Table.Cell>
-							<Table.Cell>{data?.phone}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								মোবাইল নং
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.phone}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>ইমেইল</Table.Cell>
-							<Table.Cell>{data?.email || 'প্রযোজ্য নয়'}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								ইমেইল
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.email || 'প্রযোজ্য নয়'}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>সদস্য ধরণ</Table.Cell>
-							<Table.Cell textTransform='capitalize'>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								সদস্য ধরণ
+							</Table.Cell>
+							<Table.Cell
+								color='#222'
+								textTransform='capitalize'>
 								{data?.visitorType === 'individual' ? 'একক' : 'দম্পতি'}
 							</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>সন্তান সংখ্যা</Table.Cell>
-							<Table.Cell>{data?.noOfKids}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								সন্তান সংখ্যা
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.noOfKids}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>গাড়ি চালক/বডিগার্ড</Table.Cell>
-							<Table.Cell>{data?.noOfDrivers}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								গাড়ি চালক/বডিগার্ড
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.noOfDrivers}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>পরিবহন</Table.Cell>
-							<Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								পরিবহন
+							</Table.Cell>
+							<Table.Cell color='#222'>
 								{data?.isTransportRequired
 									? `হ্যাঁ (${data.transportSeats} সিট) - পিকআপ: ${data?.pickupLocation}`
 									: 'না'}
 							</Table.Cell>
 						</Table.Row>
 						<Table.Row>
-							<Table.Cell fontWeight='bold'>ট্রানজ্যাকশন আইডি</Table.Cell>
-							<Table.Cell>{data?.tranxId}</Table.Cell>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								ট্রানজ্যাকশন আইডি
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
 						</Table.Row>
 						<Table.Row>
 							<Table.Cell
 								fontWeight='bold'
-								fontSize='lg'>
+								color='#222'>
+								ট্রানজ্যাকশন আইডি
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
+						</Table.Row>
+						<Table.Row>
+							<Table.Cell
+								fontWeight='bold'
+								fontSize='lg'
+								color='#222'>
 								জমার পরিমাণ
 							</Table.Cell>
 							<Table.Cell
 								fontWeight='bold'
 								fontSize='lg'
-								color='teal.600'>
+								color='crimson'>
 								{data?.amountPaid} টাকা
 							</Table.Cell>
 						</Table.Row>
@@ -290,7 +340,9 @@ export default function Receipt({ code }: { code: string }) {
 				className='no-print'>
 				<Button
 					colorPalette='teal'
-					variant='outline' border='1px solid' borderColor='gray.300'
+					variant='outline'
+					border='1px solid'
+					borderColor='gray.300'
 					onClick={handlePrint}>
 					<Printer /> রসিদ প্রিন্ট করুন
 				</Button>
