@@ -1,18 +1,9 @@
-import {
-	Box,
-	Container,
-	VStack,
-	Heading,
-	Text,
-	Flex,
-	Link,
-	Button,
-	HStack,
-} from '@chakra-ui/react';
+import RegistrationForm from '@/components/RegistrationForm';
+import { Box, Container, VStack, Heading, Text, Flex, Link } from '@chakra-ui/react';
 import { Tent } from 'lucide-react';
 import NextLink from 'next/link';
 
-export default function Home() {
+export default function RegistrationPage() {
 	return (
 		<Box
 			minH='100vh'
@@ -21,22 +12,24 @@ export default function Home() {
 			color='gray.900'>
 			<Container maxW='container.md'>
 				<VStack
-					gap={8}
+					gap={6}
 					mb={8}
 					textAlign='center'>
 					{/* Logo Placeholder */}
-					<Flex
-						bg='white'
-						p={4}
-						borderRadius='md'
-						boxShadow='sm'
-						color='orange.700'
-						justify='center'
-						align='center'
-						border='1px solid'
-						borderColor='gray.200'>
-						<Tent size={48} />
-					</Flex>
+					<NextLink href='/'>
+						<Flex
+							bg='white'
+							p={4}
+							borderRadius='md'
+							boxShadow='sm'
+							color='orange.700'
+							justify='center'
+							align='center'
+							border='1px solid'
+							borderColor='gray.200'>
+							<Tent size={48} />
+						</Flex>
+					</NextLink>
 
 					<VStack
 						gap={1}
@@ -78,47 +71,9 @@ export default function Home() {
 							</Text>
 						</Box>
 					</VStack>
-
-					<VStack
-						gap={4}
-						mt={8}
-						w='full'
-						maxW='md'>
-						<NextLink
-							href='/registration'
-							passHref
-							style={{ width: '100%' }}>
-							<Button
-								bg='teal.600'
-								color='white'
-								_hover={{ bg: 'teal.700' }}
-								size='xl'
-								height='60px'
-								fontSize='xl'
-								fontWeight='bold'
-								width='full'>
-								রেজিস্ট্রেশন করুন
-							</Button>
-						</NextLink>
-
-						<NextLink
-							href='/download-receipt'
-							passHref
-							style={{ width: '100%' }}>
-							<Button
-								bg='gray.700'
-								color='white'
-								_hover={{ bg: 'gray.800' }}
-								size='xl'
-								height='60px'
-								fontSize='xl'
-								fontWeight='bold'
-								width='full'>
-								রসিদ ডাউনলোড করুন
-							</Button>
-						</NextLink>
-					</VStack>
 				</VStack>
+
+				<RegistrationForm />
 			</Container>
 		</Box>
 	);
