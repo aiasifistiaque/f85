@@ -151,16 +151,22 @@ export default function Receipt({ code }: { code: string }) {
 					textAlign='center'>
 					<NextLink href='/'>
 						<Flex
-							bg='white'
-							p={4}
+							bg='black'
+							p={0.5}
 							borderRadius='md'
-							boxShadow='sm'
+							boxShadow='xs'
 							color='orange.700'
 							justify='center'
 							align='center'
 							border='1px solid'
 							borderColor='gray.200'>
-							<Tent size={48} />
+							<Image
+								borderRadius='md'
+								src='/logo.jpeg'
+								alt='OCD Logo'
+								boxSize='100px'
+								objectFit='contain'
+							/>
 						</Flex>
 					</NextLink>
 
@@ -195,7 +201,7 @@ export default function Receipt({ code }: { code: string }) {
 
 							<Text
 								fontSize='lg'
-								color='gray.600'
+								color='#333'
 								fontWeight='medium'>
 								তারিখ: ২৭ ডিসেম্বর ২০২৫, শনিবার
 							</Text>
@@ -205,6 +211,7 @@ export default function Receipt({ code }: { code: string }) {
 					<Text
 						fontSize='lg'
 						fontWeight='bold'
+						color='#111'
 						mt={2}>
 						রেজিস্ট্রেশন রসিদ # {code}
 					</Text>
@@ -297,14 +304,14 @@ export default function Receipt({ code }: { code: string }) {
 							</Table.Cell>
 							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
 						</Table.Row>
-						<Table.Row>
+						{/* <Table.Row>
 							<Table.Cell
 								fontWeight='bold'
 								color='#222'>
 								ট্রানজ্যাকশন আইডি
 							</Table.Cell>
 							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
-						</Table.Row>
+						</Table.Row> */}
 						<Table.Row>
 							<Table.Cell
 								fontWeight='bold'
@@ -339,7 +346,7 @@ export default function Receipt({ code }: { code: string }) {
 				gap={4}
 				className='no-print'>
 				<Button
-					colorPalette='teal'
+					colorPalette='black'
 					variant='outline'
 					border='1px solid'
 					borderColor='gray.300'
@@ -347,7 +354,7 @@ export default function Receipt({ code }: { code: string }) {
 					<Printer /> রসিদ প্রিন্ট করুন
 				</Button>
 				<Button
-					colorPalette='teal'
+					colorPalette='black'
 					onClick={handleDownloadPDF}>
 					<Download /> PDF ডাউনলোড করুন
 				</Button>

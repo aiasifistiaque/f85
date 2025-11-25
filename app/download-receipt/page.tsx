@@ -11,6 +11,7 @@ import {
 	Button,
 	Field,
 	Alert,
+	Image,
 } from '@chakra-ui/react';
 import { Tent } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -67,16 +68,22 @@ export default function DownloadReceiptPage() {
 					{/* Logo Placeholder */}
 					<NextLink href='/'>
 						<Flex
-							bg='white'
-							p={4}
+							bg='black'
+							p={0.5}
 							borderRadius='md'
-							boxShadow='sm'
+							boxShadow='xs'
 							color='orange.700'
 							justify='center'
 							align='center'
 							border='1px solid'
 							borderColor='gray.200'>
-							<Tent size={48} />
+							<Image
+								borderRadius='md'
+								src='/logo.jpeg'
+								alt='OCD Logo'
+								boxSize='100px'
+								objectFit='contain'
+							/>
 						</Flex>
 					</NextLink>
 

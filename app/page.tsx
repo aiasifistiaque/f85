@@ -8,6 +8,7 @@ import {
 	Link,
 	Button,
 	HStack,
+	Image,
 } from '@chakra-ui/react';
 import { Tent } from 'lucide-react';
 import NextLink from 'next/link';
@@ -26,16 +27,22 @@ export default function Home() {
 					textAlign='center'>
 					{/* Logo Placeholder */}
 					<Flex
-						bg='white'
-						p={4}
+						bg='black'
+						p={0.5}
 						borderRadius='md'
-						boxShadow='sm'
+						boxShadow='xs'
 						color='orange.700'
 						justify='center'
 						align='center'
 						border='1px solid'
 						borderColor='gray.200'>
-						<Tent size={48} />
+						<Image
+							borderRadius='md'
+							src='/logo.jpeg'
+							alt='OCD Logo'
+							boxSize='100px'
+							objectFit='contain'
+						/>
 					</Flex>
 
 					<VStack
