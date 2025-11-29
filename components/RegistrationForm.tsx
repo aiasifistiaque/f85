@@ -34,7 +34,7 @@ import {
 } from '@/store/formSlice';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { usePostMutation } from '@/store/services/commonApi';
+import { useGetCountQuery, usePostMutation } from '@/store/services/commonApi';
 
 // Define form data type matching Redux state
 interface FormInputs {
@@ -53,11 +53,22 @@ interface FormInputs {
 	amountPaid: number;
 }
 
+// Generate reference from last 3 digits of phone and 3-digit data count
+function generateReference(phone: string, dataCount: number | undefined): string {
+	const raw = String(phone || '');
+	const lastThree = raw.slice(-3).padStart(3, '0');
+	const dataPart = String(dataCount ?? 0).padStart(3, '0');
+	return `${lastThree}-${dataPart}`;
+}
+
 export default function RegistrationForm() {
 	const dispatch = useAppDispatch();
 	const totalAmount = useAppSelector(selectTotalAmount);
 	const router = useRouter();
 	const [errorMessage, setErrorMessage] = useState<string>('');
+	const [reference, setReference] = useState<string>('');
+
+	const {data}=useGetCountQuery({path:'regs'})
 
 	const [trigger, result] = usePostMutation();
 
@@ -85,7 +96,15 @@ export default function RegistrationForm() {
 	const watchedNoOfDrivers = watch('noOfDrivers');
 	const watchedIsTransportRequired = watch('isTransportRequired');
 	const watchedTransportSeats = watch('transportSeats');
+	const watchedPhone = watch('phone');
 
+	// Update reference when phone number or data changes
+	useEffect(() => {
+		if (watchedPhone && data !== undefined) {
+			const ref = generateReference(watchedPhone, data+1);
+
+		}
+	}, [watchedPhone, data]);
 	// Sync with Redux for pricing calculation
 	useEffect(() => {
 		dispatch(setVisitorType(watchedVisitorType));
@@ -122,11 +141,14 @@ export default function RegistrationForm() {
 
 		setErrorMessage('');
 
+		
+
 		// Get form data
-		const data = getValues();
+		const dataa = getValues();
+	
 
 		// Dispatch all data to Redux
-		Object.entries(data).forEach(([key, value]) => {
+		Object.entries(dataa).forEach(([key, value]) => {
 			if (key === 'isTransportRequired') {
 				dispatch(updateField({ field: key, value: value === 'yes' }));
 			} else {
@@ -134,12 +156,12 @@ export default function RegistrationForm() {
 			}
 		});
 
-		const { isTransportRequired, ...restData } = data;
+		const { isTransportRequired, ...restData } = dataa;
 
 		try {
 			const response = await trigger({
 				path: 'regs',
-				body: { isTransportRequired: data.isTransportRequired === 'yes', ...restData },
+				body: { isTransportRequired: dataa.isTransportRequired === 'yes', ref: generateReference(watchedPhone, data+1), totalAmount, ...restData },
 			}).unwrap();
 
 			// Navigate to receipt with the registration code
@@ -149,7 +171,7 @@ export default function RegistrationForm() {
 		} catch (error: any) {
 			console.error('Registration error:', error);
 			const message =
-				error?.data?.message ||
+				error?.dataa?.message ||
 				error?.message ||
 				'রেজিস্ট্রেশন সম্পন্ন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
 			setErrorMessage(message);
@@ -483,20 +505,55 @@ export default function RegistrationForm() {
 								fontSize='sm'
 								color='gray.700'
 								mb={2}>
-								২. নিচের বিকাশ নম্বরে {totalAmount?.toLocaleString()} টাকা পাঠান
+								२. নিচের যেকোনো একটি নম্বরে {totalAmount?.toLocaleString()} টাকা বিকাশ করুন
 							</Text>
+							<Box
+								mt={3}
+								p={3}
+								mb={2}
+								bg='gray.100'
+				
+								borderLeft='4px solid'
+								borderLeftColor='teal.500'>
+								<Text
+									fontSize='sm'
+									color='gray.700'
+									mb={2}>
+									<strong>বিকাশ নম্বর:</strong>
+								</Text>
+								<Text
+									fontSize='md'
+									fontWeight='bold'
+									color='gray.900'
+									mb={1}>
+									01633803766
+								</Text>
+								<Text
+									fontSize='md'
+									fontWeight='bold'
+									color='gray.900'
+									mb={1}>
+									01711172476
+								</Text>
+								<Text
+									fontSize='md'
+									fontWeight='bold'
+									color='gray.900'>
+									01817634817
+								</Text>
+					
+							</Box>
 							<Text
-								fontSize='lg'
-								fontWeight='bold'
-								color='gray.900'
+								fontSize='sm'
+								color='gray.700'
 								mb={2}>
-								বিকাশ নম্বর: <strong>01XXXXXXXXX</strong>
+								৩. ট্রানজ্যাকশনটি করার আগে Reference-এ <strong>{`"${generateReference(watchedPhone, data+1)}"`}</strong> লিখুন এবং তারপর পেমেন্ট করুন
 							</Text>
 							<Text
 								fontSize='sm'
 								color='gray.700'
 								mb={2}>
-								৩. পেমেন্ট সম্পন্ন হওয়ার পর ট্রানজ্যাকশন আইডি নিচে লিখুন এবং ফর্মটি জমা দিন
+								৪. পেমেন্ট হয়ে গেলে নিচে পাঠানো টাকার পরিমাণ এবং বিকাশের <strong>{`"Transaction ID"`}</strong> লিখুন
 							</Text>
 							<Text
 								fontSize='sm'
