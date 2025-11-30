@@ -353,11 +353,11 @@ export default function Receipt({ code }: { code: string }) {
 					onClick={handlePrint}>
 					<Printer /> রসিদ প্রিন্ট করুন
 				</Button>
-				<Button
+				{/* <Button
 					colorPalette='black'
 					onClick={handleDownloadPDF}>
 					<Download /> PDF ডাউনলোড করুন
-				</Button>
+				</Button> */}
 			</HStack>
 
 			<style

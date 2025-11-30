@@ -14,7 +14,10 @@ import {
 	IconButton,
 	Grid,
 	Alert,
+	Clipboard,
+	HStack,
 } from '@chakra-ui/react';
+import { Copy, Check } from 'lucide-react';
 // In Chakra v3, Field is the container for form controls
 // Checkbox might be complex, let's use a simple checkbox for now or try to import Checkbox
 
@@ -68,7 +71,7 @@ export default function RegistrationForm() {
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const [reference, setReference] = useState<string>('');
 
-	const {data}=useGetCountQuery({path:'regs'})
+	const { data } = useGetCountQuery({ path: 'regs' });
 
 	const [trigger, result] = usePostMutation();
 
@@ -101,8 +104,7 @@ export default function RegistrationForm() {
 	// Update reference when phone number or data changes
 	useEffect(() => {
 		if (watchedPhone && data !== undefined) {
-			const ref = generateReference(watchedPhone, data+1);
-
+			const ref = generateReference(watchedPhone, data + 1);
 		}
 	}, [watchedPhone, data]);
 	// Sync with Redux for pricing calculation
@@ -141,11 +143,8 @@ export default function RegistrationForm() {
 
 		setErrorMessage('');
 
-		
-
 		// Get form data
 		const dataa = getValues();
-	
 
 		// Dispatch all data to Redux
 		Object.entries(dataa).forEach(([key, value]) => {
@@ -161,7 +160,12 @@ export default function RegistrationForm() {
 		try {
 			const response = await trigger({
 				path: 'regs',
-				body: { isTransportRequired: dataa.isTransportRequired === 'yes', ref: generateReference(watchedPhone, data+1), totalAmount, ...restData },
+				body: {
+					isTransportRequired: dataa.isTransportRequired === 'yes',
+					ref: generateReference(watchedPhone, data + 1),
+					totalAmount,
+					...restData,
+				},
 			}).unwrap();
 
 			// Navigate to receipt with the registration code
@@ -183,7 +187,7 @@ export default function RegistrationForm() {
 			maxW='2xl'
 			mx='auto'
 			mt={8}
-			p={{ base: 6, md: 10 }}
+			p={{ base: 4, md: 10 }}
 			borderWidth={1}
 			borderRadius='lg'
 			boxShadow='lg'
@@ -313,7 +317,7 @@ export default function RegistrationForm() {
 								_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
 								{...register('visitorType')}>
 								<option value='individual'>একক (১২০০ টাকা)</option>
-								<option value='couple'>দম্পতি (২০০০ টাকা)</option>
+								<option value='couple'>যুগল (২০০০ টাকা)</option>
 							</NativeSelect.Field>
 							<NativeSelect.Indicator />
 						</NativeSelect.Root>
@@ -470,7 +474,7 @@ export default function RegistrationForm() {
 						</Grid>
 					)}
 					<Box
-						p={6}
+						p={{ base: 3, md: 4 }}
 						bg='#f0f0ed'
 						mt={4}
 						border='1px solid'
@@ -496,23 +500,22 @@ export default function RegistrationForm() {
 								রেজিস্ট্রেশন নিশ্চিত করতে:
 							</Text>
 							<Text
-								fontSize='sm'
+								fontSize='md'
 								color='gray.700'
 								mb={2}>
 								১. বিকাশ অ্যাপে যান এবং <strong>"সেন্ড মানি"</strong> অপশন সিলেক্ট করুন
 							</Text>
 							<Text
-								fontSize='sm'
+								fontSize='md'
 								color='gray.700'
 								mb={2}>
-								२. নিচের যেকোনো একটি নম্বরে {totalAmount?.toLocaleString()} টাকা বিকাশ করুন
+								২. নিচের যেকোনো একটি নম্বরে {totalAmount?.toLocaleString()} টাকা বিকাশ করুন
 							</Text>
 							<Box
 								mt={3}
 								p={3}
 								mb={2}
 								bg='gray.100'
-				
 								borderLeft='4px solid'
 								borderLeftColor='teal.500'>
 								<Text
@@ -521,39 +524,27 @@ export default function RegistrationForm() {
 									mb={2}>
 									<strong>বিকাশ নম্বর:</strong>
 								</Text>
-								<Text
-									fontSize='md'
-									fontWeight='bold'
-									color='gray.900'
-									mb={1}>
-									01633803766
-								</Text>
-								<Text
-									fontSize='md'
-									fontWeight='bold'
-									color='gray.900'
-									mb={1}>
-									01711172476
-								</Text>
-								<Text
-									fontSize='md'
-									fontWeight='bold'
-									color='gray.900'>
-									01817634817
-								</Text>
-					
+								<PhoneNumber number='01633803766' />
+								<PhoneNumber number='01711172476' />
+								<PhoneNumber
+									number='01817634817'
+									mb={0}
+								/>
 							</Box>
 							<Text
-								fontSize='sm'
+								fontSize='md'
 								color='gray.700'
 								mb={2}>
-								৩. ট্রানজ্যাকশনটি করার আগে Reference-এ <strong>{`"${generateReference(watchedPhone, data+1)}"`}</strong> লিখুন এবং তারপর পেমেন্ট করুন
+								৩. ট্রানজ্যাকশনটি করার আগে Reference-এ{' '}
+								<strong>{`"${generateReference(watchedPhone, data + 1)}"`}</strong> লিখুন এবং তারপর
+								পেমেন্ট করুন
 							</Text>
 							<Text
-								fontSize='sm'
+								fontSize='md'
 								color='gray.700'
 								mb={2}>
-								৪. পেমেন্ট হয়ে গেলে নিচে পাঠানো টাকার পরিমাণ এবং বিকাশের <strong>{`"Transaction ID"`}</strong> লিখুন
+								৪. পেমেন্ট হয়ে গেলে নিচে পাঠানো টাকার পরিমাণ এবং বিকাশের{' '}
+								<strong>{`"Transaction ID"`}</strong> লিখুন
 							</Text>
 							<Text
 								fontSize='sm'
@@ -647,3 +638,45 @@ export default function RegistrationForm() {
 		</Box>
 	);
 }
+
+const PhoneNumber = ({ number, ...props }: { number: string; mb?: number }) => {
+	return (
+		<Clipboard.Root value={number}>
+			<Clipboard.Trigger asChild>
+				<Button
+					variant='outline'
+					size='lg'
+					width='full'
+					borderRadius='none'
+					height='56px'
+					mb={props.mb !== undefined ? props.mb : 3}
+					justifyContent='space-between'
+					px={4}
+					borderColor='gray.300'
+					bg='white'>
+					<Text
+						fontSize='xl'
+						fontWeight='bold'
+						color='gray.900'
+						letterSpacing='wide'>
+						{number}
+					</Text>
+					<HStack gap={2}>
+						<Clipboard.Indicator
+							copied={
+								<HStack gap={1}>
+									<Check size={16} />
+									<Text fontSize='sm'>কপি হয়েছে</Text>
+								</HStack>
+							}>
+							<HStack gap={1}>
+								<Copy size={16} />
+								<Text fontSize='sm'>কপি করুন</Text>
+							</HStack>
+						</Clipboard.Indicator>
+					</HStack>
+				</Button>
+			</Clipboard.Trigger>
+		</Clipboard.Root>
+	);
+};
