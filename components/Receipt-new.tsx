@@ -1,15 +1,6 @@
 'use client';
 
-import {
-	Box,
-	VStack,
-	Heading,
-	Text,
-	Button,
-	HStack,
-	Flex,
-	Spinner,
-} from '@chakra-ui/react';
+import { Box, VStack, Heading, Text, Button, HStack, Flex, Spinner } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { Printer, Tent, Download } from 'lucide-react';
 import { useGetByIdQuery } from '@/store/services/commonApi';
@@ -174,7 +165,7 @@ export default function Receipt({ code }: { code: string }) {
 						color='#0f766e'
 						fontWeight='bold'
 						mb={3}>
-						বার্ষিক সম্মিলন ২০২৬
+						বার্ষিক পুনর্মিলনী ২০২৬
 					</Heading>
 					<Box
 						bg='#d1fae5'

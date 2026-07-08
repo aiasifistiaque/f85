@@ -53,7 +53,7 @@ export default function RegistrationPage() {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক সম্মিলন ২০২৬
+							বার্ষিক পুনর্মিলনী ২০২৬
 						</Heading>
 						<Box pt={2}>
 							<Link
@@ -74,6 +74,12 @@ export default function RegistrationPage() {
 								fontWeight='medium'
 								mt={1}>
 								তারিখ: ২৮ জুলাই ২০২৬, মঙ্গলবার
+							</Text>
+							<Text
+								fontSize='lg'
+								color='gray.600'
+								fontWeight='medium'>
+								সময়: সন্ধ্যা ৭টা
 							</Text>
 						</Box>
 					</VStack>

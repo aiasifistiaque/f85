@@ -120,7 +120,7 @@ export default function Receipt({ code }: { code: string }) {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক সম্মিলন ২০২৬
+							বার্ষিক পুনর্মিলনী ২০২৬
 						</Heading>
 						<Box pt={1}>
 							<Link
@@ -140,6 +140,12 @@ export default function Receipt({ code }: { code: string }) {
 								color='#333'
 								fontWeight='medium'>
 								তারিখ: ২৮ জুলাই ২০২৬, মঙ্গলবার
+							</Text>
+							<Text
+								fontSize='lg'
+								color='#333'
+								fontWeight='medium'>
+								সময়: সন্ধ্যা ৭টা
 							</Text>
 						</Box>
 					</VStack>
@@ -285,9 +291,9 @@ export default function Receipt({ code }: { code: string }) {
 					<Alert.Indicator />
 					<Alert.Title>গুরুত্বপূর্ণ নির্দেশনা</Alert.Title>
 					<Alert.Description>
-						রসিদটি ডাউনলোড করুন অথবা স্ক্রিনশট নিয়ে রাখুন — অনুষ্ঠানে প্রবেশের সময় এটি দেখাতে হবে। এছাড়া
-						আপনার মোবাইল নম্বরে একটি এসএমএস পাঠানো হয়েছে, প্রয়োজনে সেটিও রেফারেন্স হিসেবে ব্যবহার করতে
-						পারবেন।
+						রসিদটি ডাউনলোড করুন অথবা স্ক্রিনশট নিয়ে রাখুন — অনুষ্ঠানে প্রবেশের সময় এটি দেখাতে হবে।
+						এছাড়া আপনার মোবাইল নম্বরে একটি এসএমএস পাঠানো হয়েছে, প্রয়োজনে সেটিও রেফারেন্স হিসেবে
+						ব্যবহার করতে পারবেন।
 					</Alert.Description>
 				</Alert.Root>
 			</Box>
