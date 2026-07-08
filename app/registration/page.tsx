@@ -53,7 +53,7 @@ export default function RegistrationPage() {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক সম্মিলন ২০২৫
+							বার্ষিক সম্মিলন ২০২৬
 						</Heading>
 						<Box pt={2}>
 							<Link
@@ -64,7 +64,7 @@ export default function RegistrationPage() {
 									fontSize='xl'
 									color='gray.800'
 									fontWeight='semibold'>
-									স্থান: আনসার একাডেমি, সফিপুর, গাজীপুর
+									স্থান: অফিসার্স ক্লাব ঢাকা, ২৬ বেইলি রোড, ঢাকা ১০০০
 								</Text>
 							</Link>
 
@@ -73,7 +73,7 @@ export default function RegistrationPage() {
 								color='gray.600'
 								fontWeight='medium'
 								mt={1}>
-								তারিখ: ২৭ ডিসেম্বর ২০২৫, শনিবার
+								তারিখ: ২৮ জুলাই ২০২৬, মঙ্গলবার
 							</Text>
 						</Box>
 					</VStack>

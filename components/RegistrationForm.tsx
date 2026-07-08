@@ -282,7 +282,7 @@ export default function RegistrationForm() {
 							{...register('email')}
 						/>
 					</Field.Root>
-					<Field.Root>
+					{/* <Field.Root>
 						<Field.Label
 							fontWeight='semibold'
 							color='gray.900'
@@ -300,7 +300,7 @@ export default function RegistrationForm() {
 							_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
 							{...register('facebook')}
 						/>
-					</Field.Root>
+					</Field.Root> */}
 					<Field.Root required>
 						<Field.Label
 							fontWeight='semibold'
@@ -316,8 +316,8 @@ export default function RegistrationForm() {
 								height='52px'
 								_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
 								{...register('visitorType')}>
-								<option value='individual'>একক (১২০০ টাকা)</option>
-								<option value='couple'>যুগল (২০০০ টাকা)</option>
+								<option value='individual'>একক</option>
+								<option value='couple'>যুগল</option>
 							</NativeSelect.Field>
 							<NativeSelect.Indicator />
 						</NativeSelect.Root>
@@ -325,7 +325,7 @@ export default function RegistrationForm() {
 					<Grid
 						gridTemplateColumns={{ base: '1fr 1fr', md: '1fr 1fr' }}
 						gap={{ base: 2, md: 4 }}>
-						<Field.Root
+						{/* <Field.Root
 							flex={1}
 							w='full'>
 							<Field.Label
@@ -355,7 +355,7 @@ export default function RegistrationForm() {
 									setValueAs: v => (v === '' ? 0 : parseInt(v) || 0),
 								})}
 							/>
-						</Field.Root>
+						</Field.Root> */}
 
 						<Field.Root
 							flex={1}
@@ -366,12 +366,7 @@ export default function RegistrationForm() {
 								fontSize='md'>
 								গাড়ি চালক/বডিগার্ড
 							</Field.Label>
-							<Text
-								fontSize='xs'
-								color='gray.600'
-								mb={1}>
-								৫০০ টাকা/জন
-							</Text>
+
 							<Input
 								type='number'
 								min={0}
@@ -388,227 +383,7 @@ export default function RegistrationForm() {
 							/>
 						</Field.Root>
 					</Grid>
-					<Field.Root>
-						<Field.Label
-							fontWeight='semibold'
-							color='gray.900'
-							fontSize='md'>
-							যাতায়াত লাগবে?
-						</Field.Label>
-						<NativeSelect.Root size='lg'>
-							<NativeSelect.Field
-								borderColor='gray.400'
-								borderRadius='none'
-								color='gray.900'
-								height='52px'
-								_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-								{...register('isTransportRequired')}>
-								<option value='no'>না</option>
-								<option value='yes'>হ্যাঁ</option>
-							</NativeSelect.Field>
-							<NativeSelect.Indicator />
-						</NativeSelect.Root>
-					</Field.Root>
-					{watchedIsTransportRequired === 'yes' && (
-						<Grid
-							gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
-							gap={{ base: 4, md: 4 }}>
-							<Field.Root
-								w='full'
-								required
-								flex={1}>
-								<Field.Label
-									fontWeight='semibold'
-									color='gray.900'
-									fontSize='md'>
-									সিট সংখ্যা (২০০ টাকা/জন)
-								</Field.Label>
 
-								<Input
-									type='number'
-									min={1}
-									borderColor='gray.400'
-									borderRadius='none'
-									color='gray.900'
-									size='lg'
-									height='52px'
-									_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-									{...register('transportSeats', {
-										required: true,
-										min: 1,
-										valueAsNumber: true,
-										setValueAs: v => (v === '' ? 0 : parseInt(v) || 0),
-									})}
-								/>
-							</Field.Root>
-
-							<Field.Root
-								w='full'
-								required
-								flex={1}>
-								<Field.Label
-									fontWeight='semibold'
-									color='gray.900'
-									fontSize='md'>
-									পিকআপ পয়েন্ট
-								</Field.Label>
-								<NativeSelect.Root size='lg'>
-									<NativeSelect.Field
-										placeholder='লোকেশন নির্বাচন করুন'
-										borderColor='gray.400'
-										borderRadius='none'
-										color='gray.900'
-										height='52px'
-										_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-										{...register('pickupLocation', { required: true })}>
-										<option value='officers-club'>অফিসার্স ক্লাব</option>
-										<option value='mohakhali'>মহাখালী</option>
-										<option value='uttara'>উত্তরা</option>
-										<option value='shukrabad'>শুক্রাবাদ</option>
-										<option value='shamoly'>শ্যামলী</option>
-										<option value='mirpur'>মিরপুর</option>
-									</NativeSelect.Field>
-									<NativeSelect.Indicator />
-								</NativeSelect.Root>
-							</Field.Root>
-						</Grid>
-					)}
-					<Box
-						p={{ base: 3, md: 4 }}
-						bg='#f0f0ed'
-						mt={4}
-						border='1px solid'
-						borderColor='gray.300'>
-						<Text
-							fontWeight='bold'
-							fontSize='2xl'
-							color='gray.900'>
-							মোট টাকা: {totalAmount?.toLocaleString()} টাকা
-						</Text>
-						<Text
-							fontSize='sm'
-							color='gray.600'
-							mt={1}>
-							(১.৫% ট্রানজ্যাকশন চার্জ সহ)
-						</Text>
-						<Box mt={4}>
-							<Text
-								fontSize='md'
-								color='gray.800'
-								fontWeight='semibold'
-								mb={2}>
-								রেজিস্ট্রেশন নিশ্চিত করতে:
-							</Text>
-							<Text
-								fontSize='md'
-								color='gray.700'
-								mb={2}>
-								১. বিকাশ অ্যাপে যান এবং <strong>"সেন্ড মানি"</strong> অপশন সিলেক্ট করুন
-							</Text>
-							<Text
-								fontSize='md'
-								color='gray.700'
-								mb={2}>
-								২. নিচের যেকোনো একটি নম্বরে {totalAmount?.toLocaleString()} টাকা বিকাশ করুন
-							</Text>
-							<Box
-								mt={3}
-								p={3}
-								mb={2}
-								bg='gray.100'
-								borderLeft='4px solid'
-								borderLeftColor='teal.500'>
-								<Text
-									fontSize='sm'
-									color='gray.700'
-									mb={2}>
-									<strong>বিকাশ নম্বর:</strong>
-								</Text>
-								<PhoneNumber number='01633803766' />
-								<PhoneNumber number='01711172476' />
-								<PhoneNumber
-									number='01817634817'
-									mb={0}
-								/>
-							</Box>
-							<Text
-								fontSize='md'
-								color='gray.700'
-								mb={2}>
-								৩. ট্রানজ্যাকশনটি করার আগে Reference-এ{' '}
-								<strong>{`"${generateReference(watchedPhone, data + 1)}"`}</strong> লিখুন এবং তারপর
-								পেমেন্ট করুন
-							</Text>
-							<Text
-								fontSize='md'
-								color='gray.700'
-								mb={2}>
-								৪. পেমেন্ট হয়ে গেলে নিচে পাঠানো টাকার পরিমাণ এবং বিকাশের{' '}
-								<strong>{`"Transaction ID"`}</strong> লিখুন
-							</Text>
-							<Text
-								fontSize='sm'
-								color='teal.700'
-								fontWeight='semibold'
-								mt={3}
-								p={2}
-								bg='teal.50'
-								borderRadius='md'>
-								✓ সফল রেজিস্ট্রেশনের পর আপনার মোবাইল নম্বরে SMS এর মাধ্যমে রেজিস্ট্রেশন কোড এবং রসিদ
-								ডাউনলোড লিংক পাঠানো হবে
-							</Text>
-						</Box>
-					</Box>{' '}
-					<Field.Root
-						invalid={!!errors.amountPaid}
-						required>
-						<Field.Label
-							fontWeight='semibold'
-							color='gray.900'
-							fontSize='md'>
-							জমার পরিমাণ
-						</Field.Label>
-						<Input
-							type='number'
-							placeholder='টাকার পরিমাণ লিখুন'
-							borderColor='gray.400'
-							borderRadius='none'
-							color='gray.900'
-							size='lg'
-							height='52px'
-							_placeholder={{ color: 'gray.500' }}
-							_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-							{...register('amountPaid', {
-								required: 'জমার পরিমাণ আবশ্যক',
-								validate: value =>
-									Number(value) >= Math.floor(totalAmount) ||
-									'জমার পরিমাণ মোট টাকার কম হতে পারে না',
-							})}
-						/>
-						<Field.ErrorText>{errors.amountPaid?.message}</Field.ErrorText>
-					</Field.Root>
-					<Field.Root
-						invalid={!!errors.tranxId}
-						required>
-						<Field.Label
-							fontWeight='semibold'
-							color='gray.900'
-							fontSize='md'>
-							বিকাশ ট্রানজ্যাকশন আইডি
-						</Field.Label>
-						<Input
-							placeholder='ট্রানজ্যাকশন আইডি লিখুন'
-							borderColor='gray.400'
-							borderRadius='none'
-							color='gray.900'
-							size='lg'
-							height='52px'
-							_placeholder={{ color: 'gray.500' }}
-							_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-							{...register('tranxId', { required: 'ট্রানজ্যাকশন আইডি আবশ্যক' })}
-						/>
-						<Field.ErrorText>{errors.tranxId?.message}</Field.ErrorText>
-					</Field.Root>
 					{errorMessage && (
 						<Alert.Root
 							status='error'
