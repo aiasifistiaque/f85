@@ -13,8 +13,8 @@ import {
 	Image,
 	Link,
 	Spinner,
+	Alert,
 } from '@chakra-ui/react';
-import { useRef } from 'react';
 import { Printer, Tent, Download } from 'lucide-react';
 import { useGetByIdQuery } from '@/store/services/commonApi';
 import NextLink from 'next/link';
@@ -29,74 +29,12 @@ const pickupLocationMap: Record<string, string> = {
 };
 
 export default function Receipt({ code }: { code: string }) {
-	const receiptRef = useRef<HTMLDivElement>(null);
-
 	const { data, isFetching, isError } = useGetByIdQuery({ path: 'regs/g/code', id: code });
+
+	const receiptPdfUrl = `${process.env.NEXT_PUBLIC_BACKEND}/receipt-pdf/${code}`;
 
 	const handlePrint = () => {
 		window.print();
-	};
-
-	const handleDownloadPDF = async () => {
-		if (typeof window === 'undefined') return;
-
-		try {
-			const html2canvas = (await import('html2canvas')).default;
-			const jsPDF = (await import('jspdf')).default;
-
-			const element = receiptRef.current;
-			if (!element) {
-				console.error('Receipt element not found');
-				return;
-			}
-
-			// Generate canvas from HTML with onclone to fix CSS issues
-			const canvas = await html2canvas(element, {
-				scale: 2,
-				useCORS: true,
-				logging: false,
-				backgroundColor: '#ffffff',
-				allowTaint: true,
-				foreignObjectRendering: false,
-				removeContainer: true,
-				onclone: clonedDoc => {
-					// Remove all problematic CSS properties
-					const allElements = clonedDoc.querySelectorAll('*');
-					allElements.forEach((el: any) => {
-						if (el.style) {
-							// Remove box-shadow which contains unsupported color functions
-							el.style.boxShadow = 'none';
-							el.style.textShadow = 'none';
-							// Force standard colors
-							const computed = window.getComputedStyle(el);
-							if (computed.color && computed.color.includes('color(')) {
-								el.style.color = '#000000';
-							}
-							if (computed.backgroundColor && computed.backgroundColor.includes('color(')) {
-								el.style.backgroundColor = 'transparent';
-							}
-						}
-					});
-				},
-			});
-
-			const imgData = canvas.toDataURL('image/png');
-			const pdf = new jsPDF({
-				orientation: 'portrait',
-				unit: 'mm',
-				format: 'a4',
-			});
-
-			const imgWidth = 210; // A4 width in mm
-			const pageHeight = 297; // A4 height in mm
-			const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-			pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-			pdf.save(`receipt-${code}.pdf`);
-		} catch (error) {
-			console.error('PDF download error:', error);
-			alert('PDF ডাউনলোড করতে সমস্যা হয়েছে। অনুগ্রহ করে প্রিন্ট অপশন ব্যবহার করুন।');
-		}
 	};
 
 	if (isFetching) {
@@ -141,9 +79,7 @@ export default function Receipt({ code }: { code: string }) {
 			bg='white'
 			boxShadow='lg'
 			borderRadius='md'>
-			<Box
-				ref={receiptRef}
-				id='printable-receipt'>
+			<Box id='printable-receipt'>
 				{/* Header */}
 				<VStack
 					mb={4}
@@ -339,12 +275,41 @@ export default function Receipt({ code }: { code: string }) {
 				</Box>
 			</Box>
 
+			{/* Instructions */}
+			<Box
+				mt={6}
+				className='no-print'>
+				<Alert.Root
+					status='info'
+					borderRadius='md'>
+					<Alert.Indicator />
+					<Alert.Title>গুরুত্বপূর্ণ নির্দেশনা</Alert.Title>
+					<Alert.Description>
+						রসিদটি ডাউনলোড করুন অথবা স্ক্রিনশট নিয়ে রাখুন — অনুষ্ঠানে প্রবেশের সময় এটি দেখাতে হবে। এছাড়া
+						আপনার মোবাইল নম্বরে একটি এসএমএস পাঠানো হয়েছে, প্রয়োজনে সেটিও রেফারেন্স হিসেবে ব্যবহার করতে
+						পারবেন।
+					</Alert.Description>
+				</Alert.Root>
+			</Box>
+
 			{/* Actions */}
 			<HStack
 				mt={6}
 				justify='center'
 				gap={4}
 				className='no-print'>
+				<Button
+					asChild
+					colorPalette='black'
+					bg='gray.900'
+					color='white'
+					_hover={{ bg: 'gray.700' }}>
+					<a
+						href={receiptPdfUrl}
+						download={`receipt-${code}.pdf`}>
+						<Download /> রসিদ ডাউনলোড করুন
+					</a>
+				</Button>
 				<Button
 					colorPalette='black'
 					variant='outline'
@@ -353,11 +318,6 @@ export default function Receipt({ code }: { code: string }) {
 					onClick={handlePrint}>
 					<Printer /> রসিদ প্রিন্ট করুন
 				</Button>
-				{/* <Button
-					colorPalette='black'
-					onClick={handleDownloadPDF}>
-					<Download /> PDF ডাউনলোড করুন
-				</Button> */}
 			</HStack>
 
 			<style
