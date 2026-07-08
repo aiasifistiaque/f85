@@ -175,7 +175,7 @@ export default function RegistrationForm() {
 		} catch (error: any) {
 			console.error('Registration error:', error);
 			const message =
-				error?.dataa?.message ||
+				error?.data?.message ||
 				error?.message ||
 				'রেজিস্ট্রেশন সম্পন্ন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
 			setErrorMessage(message);
@@ -323,7 +323,7 @@ export default function RegistrationForm() {
 						</NativeSelect.Root>
 					</Field.Root>
 					<Grid
-						gridTemplateColumns={{ base: '1fr 1fr', md: '1fr 1fr' }}
+						gridTemplateColumns={{ base: '1fr', md: '1fr' }}
 						gap={{ base: 2, md: 4 }}>
 						{/* <Field.Root
 							flex={1}
