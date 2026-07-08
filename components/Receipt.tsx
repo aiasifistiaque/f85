@@ -268,14 +268,14 @@ export default function Receipt({ code }: { code: string }) {
 								{data?.visitorType === 'individual' ? 'একক' : 'দম্পতি'}
 							</Table.Cell>
 						</Table.Row>
-						<Table.Row>
+						{/* <Table.Row>
 							<Table.Cell
 								fontWeight='bold'
 								color='#222'>
 								সন্তান সংখ্যা
 							</Table.Cell>
 							<Table.Cell color='#222'>{data?.noOfKids}</Table.Cell>
-						</Table.Row>
+						</Table.Row> */}
 						<Table.Row>
 							<Table.Cell
 								fontWeight='bold'
@@ -284,7 +284,7 @@ export default function Receipt({ code }: { code: string }) {
 							</Table.Cell>
 							<Table.Cell color='#222'>{data?.noOfDrivers}</Table.Cell>
 						</Table.Row>
-						<Table.Row>
+						{/* <Table.Row>
 							<Table.Cell
 								fontWeight='bold'
 								color='#222'>
@@ -295,15 +295,7 @@ export default function Receipt({ code }: { code: string }) {
 									? `হ্যাঁ (${data.transportSeats} সিট) - পিকআপ: ${data?.pickupLocation}`
 									: 'না'}
 							</Table.Cell>
-						</Table.Row>
-						<Table.Row>
-							<Table.Cell
-								fontWeight='bold'
-								color='#222'>
-								ট্রানজ্যাকশন আইডি
-							</Table.Cell>
-							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
-						</Table.Row>
+						</Table.Row> */}
 						{/* <Table.Row>
 							<Table.Cell
 								fontWeight='bold'
@@ -312,7 +304,15 @@ export default function Receipt({ code }: { code: string }) {
 							</Table.Cell>
 							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
 						</Table.Row> */}
-						<Table.Row>
+						{/* <Table.Row>
+							<Table.Cell
+								fontWeight='bold'
+								color='#222'>
+								ট্রানজ্যাকশন আইডি
+							</Table.Cell>
+							<Table.Cell color='#222'>{data?.tranxId}</Table.Cell>
+						</Table.Row> */}
+						{/* <Table.Row>
 							<Table.Cell
 								fontWeight='bold'
 								fontSize='lg'
@@ -325,7 +325,7 @@ export default function Receipt({ code }: { code: string }) {
 								color='crimson'>
 								{data?.amountPaid} টাকা
 							</Table.Cell>
-						</Table.Row>
+						</Table.Row> */}
 					</Table.Body>
 				</Table.Root>
 				<Box
