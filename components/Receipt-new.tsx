@@ -174,7 +174,7 @@ export default function Receipt({ code }: { code: string }) {
 						color='#0f766e'
 						fontWeight='bold'
 						mb={3}>
-						বার্ষিক সম্মিলন ২০২৫
+						বার্ষিক সম্মিলন ২০২৬
 					</Heading>
 					<Box
 						bg='#d1fae5'
@@ -215,7 +215,7 @@ export default function Receipt({ code }: { code: string }) {
 								color='#134e4a'
 								fontWeight='bold'
 								textAlign='right'>
-								আনসার একাডেমি, সফিপুর, গাজীপুর
+								অফিসার্স ক্লাব ঢাকা, ২৬ বেইলি রোড, ঢাকা ১০০০
 							</Text>
 						</HStack>
 						<HStack justify='space-between'>
@@ -229,7 +229,7 @@ export default function Receipt({ code }: { code: string }) {
 								fontSize='sm'
 								color='#134e4a'
 								fontWeight='bold'>
-								২৭ ডিসেম্বর ২০২৫, শনিবার
+								২৮ জুলাই ২০২৬, মঙ্গলবার
 							</Text>
 						</HStack>
 					</Box>

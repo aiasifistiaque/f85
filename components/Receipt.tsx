@@ -184,18 +184,18 @@ export default function Receipt({ code }: { code: string }) {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক সম্মিলন ২০২৫
+							বার্ষিক সম্মিলন ২০২৬
 						</Heading>
 						<Box pt={1}>
 							<Link
 								target='_blank'
 								rel='noopener noreferrer'
-								href='https://www.google.com/maps/place/Bangladesh+Ansar+VDP+Academy,+Safipur,+Gazipur/@24.0256786,90.2595071,16z/data=!4m10!1m2!2m1!1sansar+academy+shafipur+gazipur!3m6!1s0x3755e7518075884f:0xa6622510886d9024!8m2!3d24.0256786!4d90.2685193!15sCh5hbnNhciBhY2FkZW15IHNoYWZpcHVyIGdhemlwdXKSARFnb3Zlcm5tZW50X29mZmljZeABAA!16s%2Fg%2F11h6xd6_yd?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D'>
+								href="https://www.google.com/maps/search/?api=1&query=Officers'+Club+Dhaka,+26+Bailey+Road,+Dhaka+1000">
 								<Text
 									fontSize='xl'
 									color='gray.800'
 									fontWeight='semibold'>
-									স্থান: আনসার একাডেমি, সফিপুর, গাজীপুর
+									স্থান: অফিসার্স ক্লাব ঢাকা, ২৬ বেইলি রোড, ঢাকা ১০০০
 								</Text>
 							</Link>
 
@@ -203,7 +203,7 @@ export default function Receipt({ code }: { code: string }) {
 								fontSize='lg'
 								color='#333'
 								fontWeight='medium'>
-								তারিখ: ২৭ ডিসেম্বর ২০২৫, শনিবার
+								তারিখ: ২৮ জুলাই ২০২৬, মঙ্গলবার
 							</Text>
 						</Box>
 					</VStack>
