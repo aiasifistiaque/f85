@@ -21,7 +21,6 @@ import NextLink from 'next/link';
 
 export default function DownloadReceiptPage() {
 	const [mobileNumber, setMobileNumber] = useState('');
-	const [registrationCode, setRegistrationCode] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 	const router = useRouter();
 
@@ -33,10 +32,9 @@ export default function DownloadReceiptPage() {
 
 		try {
 			const response = await trigger({
-				path: 'receipt-by-code',
+				path: 'receipt-by-phone',
 				body: {
 					phone: mobileNumber,
-					code: registrationCode,
 				},
 			}).unwrap();
 
@@ -49,7 +47,7 @@ export default function DownloadReceiptPage() {
 			const message =
 				error?.data?.message ||
 				error?.message ||
-				'রেজিস্ট্রেশন খুঁজে পাওয়া যায়নি। অনুগ্রহ করে আপনার মোবাইল নম্বর এবং কোড যাচাই করুন।';
+				'রেজিস্ট্রেশন খুঁজে পাওয়া যায়নি। অনুগ্রহ করে আপনার মোবাইল নম্বর যাচাই করুন।';
 			setErrorMessage(message);
 		}
 	};
@@ -133,28 +131,6 @@ export default function DownloadReceiptPage() {
 									placeholder='মোবাইল নম্বর লিখুন'
 									value={mobileNumber}
 									onChange={e => setMobileNumber(e.target.value)}
-									borderColor='gray.400'
-									borderRadius='none'
-									color='gray.900'
-									size='lg'
-									height='52px'
-									_placeholder={{ color: 'gray.500' }}
-									_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-									required
-								/>
-							</Field.Root>
-
-							<Field.Root required>
-								<Field.Label
-									fontWeight='semibold'
-									color='gray.900'
-									fontSize='md'>
-									রেজিস্ট্রেশন কোড
-								</Field.Label>
-								<Input
-									placeholder='রেজিস্ট্রেশন কোড লিখুন'
-									value={registrationCode}
-									onChange={e => setRegistrationCode(e.target.value)}
 									borderColor='gray.400'
 									borderRadius='none'
 									color='gray.900'

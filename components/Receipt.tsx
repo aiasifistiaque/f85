@@ -120,7 +120,7 @@ export default function Receipt({ code }: { code: string }) {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক পুনর্মিলনী ২০২৬
+							পুনর্মিলনী ২০২৬
 						</Heading>
 						<Box pt={1}>
 							<Link
@@ -145,7 +145,7 @@ export default function Receipt({ code }: { code: string }) {
 								fontSize='lg'
 								color='#333'
 								fontWeight='medium'>
-								সময়: সন্ধ্যা ৭টা
+								সময়: সন্ধ্যা ৭:৩০
 							</Text>
 						</Box>
 					</VStack>

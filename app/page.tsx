@@ -61,7 +61,7 @@ export default function Home() {
 							color='teal.700'
 							fontFamily='serif'
 							fontWeight='bold'>
-							বার্ষিক পুনর্মিলনী ২০২৬
+							পুনর্মিলনী ২০২৬
 						</Heading>
 						<Box pt={2}>
 							<Link
@@ -87,7 +87,7 @@ export default function Home() {
 								fontSize='lg'
 								color='gray.600'
 								fontWeight='medium'>
-								সময়: সন্ধ্যা ৭টা
+								সময়: সন্ধ্যা ৭:৩০
 							</Text>
 						</Box>
 					</VStack>

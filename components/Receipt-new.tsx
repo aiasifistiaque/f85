@@ -165,7 +165,7 @@ export default function Receipt({ code }: { code: string }) {
 						color='#0f766e'
 						fontWeight='bold'
 						mb={3}>
-						বার্ষিক পুনর্মিলনী ২০২৬
+						পুনর্মিলনী ২০২৬
 					</Heading>
 					<Box
 						bg='#d1fae5'
