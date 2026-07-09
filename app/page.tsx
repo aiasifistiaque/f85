@@ -72,7 +72,7 @@ export default function Home() {
 									fontSize='xl'
 									color='gray.800'
 									fontWeight='semibold'>
-									স্থান: অফিসার্স ক্লাব ঢাকা, ২৬ বেইলি রোড, ঢাকা ১০০০
+									স্থান: অফিসার্স ক্লাব, ২৬ বেইলি রোড, ঢাকা
 								</Text>
 							</Link>
 
