@@ -161,9 +161,8 @@ export default function RegistrationForm() {
 			const response = await trigger({
 				path: 'regs',
 				body: {
-					isTransportRequired: dataa.isTransportRequired === 'yes',
 					ref: generateReference(watchedPhone, data + 1),
-					totalAmount,
+
 					...restData,
 				},
 			}).unwrap();
