@@ -368,7 +368,6 @@ export default function RegistrationForm() {
 							</Field.Label>
 
 							<Input
-								type='number'
 								min={0}
 								borderColor='gray.400'
 								borderRadius='none'
@@ -376,10 +375,7 @@ export default function RegistrationForm() {
 								size='lg'
 								height='52px'
 								_focus={{ borderColor: 'gray.800', ring: '1px', ringColor: 'gray.800' }}
-								{...register('noOfDrivers', {
-									valueAsNumber: true,
-									setValueAs: v => (v === '' ? 0 : parseInt(v) || 0),
-								})}
+								{...register('noOfDrivers')}
 							/>
 						</Field.Root>
 					</Grid>
