@@ -48,7 +48,7 @@ interface FormInputs {
 	facebook: string;
 	visitorType: VisitorType;
 	noOfKids: number;
-	noOfDrivers: number;
+	noOfDrivers: string;
 	isTransportRequired: string; // Changed to string for Select (Yes/No)
 	transportSeats: number;
 	pickupLocation: PickupLocation;
@@ -85,11 +85,11 @@ export default function RegistrationForm() {
 	} = useForm<FormInputs>({
 		defaultValues: {
 			visitorType: 'individual',
-			noOfKids: 0,
-			noOfDrivers: 0,
-			isTransportRequired: 'no',
-			transportSeats: 0,
-			amountPaid: 0,
+			// noOfKids: 0,
+			noOfDrivers: '0',
+			// isTransportRequired: 'no',
+			// transportSeats: 0,
+			// amountPaid: 0,
 		},
 	});
 
